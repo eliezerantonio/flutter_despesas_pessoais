@@ -1,0 +1,4 @@
+#Fri Aug 28 18:51:30 WAT 2020
+base.0=/home/eliezer/Documents/flutter/curso5/flutter_despesas_pessoais  /build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
