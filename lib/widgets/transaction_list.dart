@@ -2,6 +2,8 @@ import 'package:despesas/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'transaction_item.dart';
+
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final void Function(String) onRemove;
@@ -43,48 +45,23 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (context, index) {
               final tr = transactions[index];
 
-              return Card(
-                elevation: 6,
-                margin: EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 5,
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: FittedBox(
-                        child: Text(
-                          "${tr.value}KZ",
-                        ),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    tr.title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle: Text(
-                    DateFormat('d-MM-y').format(tr.date),
-                  ),
-
-                  //se a largura for maior que 400 mostrar texto exluir
-                  trailing: MediaQuery.of(context).size.width > 400
-                      ? FlatButton.icon(
-                          onPressed: () => onRemove(tr.id),
-                          icon: Icon(Icons.delete),
-                          label: Text("Excluir"),
-                          textColor: Theme.of(context).errorColor,
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () => onRemove(tr.id),
-                        ),
-                ),
+              return TransactionItem(
+                key: GlobalObjectKey(tr),
+                tr: tr,
+                onRemove: onRemove,
               );
             },
           );
+    // : ListView(
+    //     children: transactions.map(
+    //       (tr) {
+    //         return TransactionItem(
+    //           key: ValueKey(tr.id),
+    //           tr: tr,
+    //           onRemove: onRemove,
+    //         );
+    //       },
+    //     ).toList(),
+    //   );
   }
 }
