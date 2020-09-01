@@ -7,16 +7,37 @@ import 'adaptative_text_field.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  TransactionForm(this.onSubmit) {}
 
   @override
-  _TransactionFormState createState() => _TransactionFormState();
+  _TransactionFormState createState() {
+    return _TransactionFormState();
+  }
 }
 
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime _selectDate = DateTime.now();
+
+  _TransactionFormState() {}
+
+  @override
+  void initState() {
+    super.initState();
+    print("initState() _transactionFormState");
+  }
+
+  @override
+  void didUpdateWidget(Widget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget() _transactionFormState");
+  }
+
+  void dispose() {
+    super.dispose();
+    print("dispose() _transactionFormState");
+  }
 
   _submitForm() {
     final title = _titleController.text;
